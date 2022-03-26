@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AulaPesquisar.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="card">
+    <div class="card-header">Pesquisar Pessoa</div>
+    <div class="card-body">
+        <form action="/Pessoas/index" method="get">
+            <div class="row">
+                <a href="/Pessoas/Create" class="btn btn-dark">Adicionar Pessoa</a>
+                <select name="itembusca" class="form-control ml-2 mr-2 col-2">
+                    <option value="Todos">Todos</option>
+                    <option value="Nome">Por nome</option>
+                    <option value="Idade">Por idade</option>
+                    <option value="CPF">Por CPF</option>
+                    <option value="RG">Por RG</option>
+                </select>
+
+                <label class="col-2 mr-1 ml-1">Digite sua busca</label>
+                <input type="text" name="query" class="form-control col-4"/>
+                <button type="submit" class="btn btn-success col-2 ml-2">Pesquisar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Idade
+            </th>
+            <th>
+                C.P.F.
+            </th>
+            <th>
+                Registro Geral
+            </th>
+            
+              
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rg)
+            </td>
+           
+            <td>
+                <a href="/Pessoas/Edit/@item.Id" class="btn btn-warning">Editar</a>
+                <a href="/Pessoas/Delete/@item.Id" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
